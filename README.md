@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Installation](#installation)
 - [Getting Started](#getting-started)
 - [Basic Vim Motions](#basic-vim-motions)
 - [Custom Keybindings](#custom-keybindings)
@@ -14,6 +15,86 @@
 ## Introduction
 
 This guide will help you learn how to use Neovim with this custom configuration. Neovim is a powerful, extensible text editor that builds upon Vim's philosophy of efficient text editing. With the right configuration, it becomes a full-featured IDE-like environment while maintaining its lightweight, keyboard-centric approach.
+
+## Installation
+
+Follow these steps to set up this Neovim configuration on a new machine:
+
+### Prerequisites
+
+1. Install Neovim (version 0.9+ recommended):
+   ```bash
+   # macOS
+   brew install neovim
+
+   # Ubuntu/Debian
+   sudo apt install neovim
+
+   # Arch Linux
+   sudo pacman -S neovim
+   ```
+
+2. Install required dependencies:
+   ```bash
+   # macOS
+   brew install ripgrep fd
+
+   # Ubuntu/Debian
+   sudo apt install ripgrep fd-find
+
+   # Arch Linux
+   sudo pacman -S ripgrep fd
+   ```
+
+### Setup Steps
+
+1. Clone this configuration repository:
+   ```bash
+   git clone https://github.com/TheAbecaster/nvim-config ~/.config/nvim
+   ```
+
+2. Install Packer (plugin manager):
+   ```bash
+   git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+   ```
+
+3. Start Neovim:
+   ```bash
+   nvim
+   ```
+
+4. Install plugins by running:
+   ```
+   :PackerSync
+   ```
+
+5. Install language servers and tools:
+   ```
+   :Mason
+   ```
+   
+   In the Mason interface, install the language servers you need (recommended servers include):
+   - lua_ls (Lua)
+   - pyright (Python)
+   - tsserver (JavaScript/TypeScript)
+   - gopls (Go)
+   - rust_analyzer (Rust)
+   - html
+   - cssls
+   - jsonls
+   - sourcekit-lsp (Swift)
+
+6. Restart Neovim to apply all changes:
+   ```
+   :qa
+   nvim
+   ```
+
+### Troubleshooting
+
+- If you encounter any errors during plugin installation, try running `:PackerSync` again
+- For language server issues, check if the server is properly installed via `:Mason`
+- Font issues: Install a Nerd Font (like JetBrains Mono Nerd Font) for proper icon display
 
 ## Getting Started
 
