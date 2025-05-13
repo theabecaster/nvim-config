@@ -58,17 +58,35 @@ Follow these steps to set up this Neovim configuration on a new machine:
    git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
    ```
 
-3. Start Neovim:
+3. **Important**: Make sure the packer.lua file is properly sourced. Open the lua/theabecaster/init.lua file and ensure it contains:
+   ```lua
+   require("theabecaster.set")
+   require("theabecaster.remap")
+   require("theabecaster.packer")
+   ```
+   
+   If the `require("theabecaster.packer")` line is missing, add it.
+
+4. Start Neovim:
    ```bash
    nvim
    ```
 
-4. Install plugins by running:
+   If you see errors on first launch, just press `q` to dismiss them. This is expected on a fresh installation.
+
+5. Install plugins by running:
    ```
    :PackerSync
    ```
 
-5. Install language servers and tools:
+   Exit Neovim after installation is complete (`:q`).
+
+6. Start Neovim again to load the newly installed plugins:
+   ```bash
+   nvim
+   ```
+
+7. Install language servers and tools:
    ```
    :Mason
    ```
@@ -84,7 +102,7 @@ Follow these steps to set up this Neovim configuration on a new machine:
    - jsonls
    - sourcekit-lsp (Swift)
 
-6. Restart Neovim to apply all changes:
+8. Restart Neovim to apply all changes:
    ```
    :qa
    nvim
@@ -92,9 +110,15 @@ Follow these steps to set up this Neovim configuration on a new machine:
 
 ### Troubleshooting
 
-- If you encounter any errors during plugin installation, try running `:PackerSync` again
-- For language server issues, check if the server is properly installed via `:Mason`
-- Font issues: Install a Nerd Font (like JetBrains Mono Nerd Font) for proper icon display
+- **"Module 'packer' not found"**: Ensure Packer is properly installed at `~/.local/share/nvim/site/pack/packer/start/packer.nvim` and that `require("theabecaster.packer")` is added to `lua/theabecaster/init.lua`
+
+- **Plugin errors on startup**: The first time you open Neovim after installation, you might see errors because plugins aren't installed yet. Run `:PackerSync` to fix this.
+
+- **Missing plugin functionality**: If certain features aren't working, try running `:PackerCompile` followed by `:PackerSync` again.
+
+- **LSP not working**: Check if the language server is properly installed via `:Mason`
+
+- **Font issues**: Install a Nerd Font (like JetBrains Mono Nerd Font) for proper icon display
 
 ## Getting Started
 
