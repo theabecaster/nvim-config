@@ -30,6 +30,39 @@ return require('packer').startup(function(use)
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
 
-    use {"williamboman/mason.nvim", "williamboman/mason-lspconfig.nvim", "neovim/nvim-lspconfig", "hrsh7th/nvim-cmp",
-         "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "saadparwaiz1/cmp_luasnip", "L3MON4D3/LuaSnip"}
+    -- LSP and Mason setup
+    use {
+        'williamboman/mason.nvim',
+        config = function()
+            require("mason").setup()
+        end
+    }
+    use {
+        'williamboman/mason-lspconfig.nvim',
+        config = function()
+            require("mason-lspconfig").setup()
+        end
+    }
+    use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-buffer'
+    use 'saadparwaiz1/cmp_luasnip'
+    use 'L3MON4D3/LuaSnip'
+
+    -- Copilot integration for nvim-cmp
+    use {
+        "zbirenbaum/copilot.lua",
+        config = function()
+            require("copilot").setup({})
+        end
+    }
+    use {
+        "zbirenbaum/copilot-cmp",
+        after = {"copilot.lua"},
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    }
 end)
