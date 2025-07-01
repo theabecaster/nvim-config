@@ -50,7 +50,7 @@ Follow these steps to set up this Neovim configuration on a new machine:
 
 1. Clone this configuration repository:
    ```bash
-   git clone https://github.com/TheAbecaster/nvim-config ~/.config/nvim
+   git clone https://github.com/theabecaster/nvim-config ~/.config/nvim
    ```
 
 2. Install Packer (plugin manager):
@@ -91,16 +91,19 @@ Follow these steps to set up this Neovim configuration on a new machine:
    :Mason
    ```
    
-   In the Mason interface, install the language servers you need (recommended servers include):
-   - lua_ls (Lua)
-   - pyright (Python)
-   - tsserver (JavaScript/TypeScript)
-   - gopls (Go)
+   In the Mason interface, install the language servers you need (auto-installed servers include):
+   - ts_ls (JavaScript/TypeScript)
    - rust_analyzer (Rust)
-   - html
-   - cssls
-   - jsonls
-   - sourcekit-lsp (Swift)
+   - arduino_language_server (Arduino)
+   - ast_grep (AST patterns)
+   - dockerls (Docker)
+   - gradle_ls (Gradle)
+   - jsonls (JSON)
+   - grammarly (Grammar checking)
+   - svelte (Svelte)
+   - taplo (TOML)
+   - lua_ls (Lua - configured separately)
+   - sourcekit (Swift - configured separately)
 
 8. Restart Neovim to apply all changes:
    ```
@@ -212,10 +215,10 @@ This configuration uses Space as the leader key.
 |-----|--------|
 | `<leader>a` | Add file to Harpoon |
 | `<C-e>` | Toggle Harpoon quick menu |
-| `<C-h>` | Navigate to Harpoon file 1 |
-| `<C-t>` | Navigate to Harpoon file 2 |
-| `<C-n>` | Navigate to Harpoon file 3 |
-| `<C-s>` | Navigate to Harpoon file 4 |
+| `<C-1>` | Navigate to Harpoon file 1 |
+| `<C-2>` | Navigate to Harpoon file 2 |
+| `<C-3>` | Navigate to Harpoon file 3 |
+| `<C-4>` | Navigate to Harpoon file 4 |
 
 ### LSP (Language Server Protocol)
 
@@ -232,7 +235,14 @@ This configuration uses Space as the leader key.
 | `<leader>vrn` | Rename symbol |
 | `<C-h>` (insert mode) | Show signature help |
 
-### Code Completion
+### Formatting and Fun
+
+| Key | Action |
+|-----|--------|
+| `<leader>f` | Format current buffer with Conform |
+| `<leader>ca` | Trigger "make it rain" animation |
+
+### Code Completion (with Copilot)
 
 | Key | Action |
 |-----|--------|
@@ -240,6 +250,8 @@ This configuration uses Space as the leader key.
 | `<C-n>` | Select next item |
 | `<C-y>` | Confirm selection |
 | `<C-Space>` | Open completion menu |
+
+**Note**: Copilot suggestions appear as the highest priority completion source.
 
 ### Text Manipulation
 
@@ -303,7 +315,7 @@ Quick navigation between frequently used files.
 ```
 <leader>a - Add file
 <C-e> - Show menu
-<C-h/t/n/s> - Jump to marked files
+<C-1/2/3/4> - Jump to marked files
 ```
 
 ### LSP & Autocompletion
@@ -321,7 +333,16 @@ Visualize file's undo history.
 Git integration directly in Neovim.
 
 ### Rose-pine
-A clean, minimal color theme.
+A clean, minimal color theme with transparent background.
+
+### Conform.nvim
+Code formatting for multiple languages including Lua, Python, JavaScript, TypeScript, JSON, Rust, and Go.
+
+### Cellular Automaton
+Fun animations for your code (try `<leader>ca` for "make it rain").
+
+### GitHub Copilot
+AI-powered code completion integrated with nvim-cmp for intelligent suggestions.
 
 ## Common Workflows
 
@@ -330,7 +351,7 @@ A clean, minimal color theme.
 2. Use `<leader>pv` to browse files
 3. Use `<leader>pf` or `<C-p>` to quickly find files
 4. Mark important files with Harpoon (`<leader>a`)
-5. Quickly switch between marked files with `<C-h/t/n/s>`
+5. Quickly switch between marked files with `<C-1/2/3/4>`
 
 ### Coding with LSP
 1. Navigate to definitions with `gd`
