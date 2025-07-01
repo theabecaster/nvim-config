@@ -65,4 +65,25 @@ return require('packer').startup(function(use)
             require("copilot_cmp").setup()
         end
     }
+
+    -- Code formatting
+    use {
+        'stevearc/conform.nvim',
+        config = function()
+            require("conform").setup({
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    python = { "isort", "black" },
+                    javascript = { "prettier" },
+                    typescript = { "prettier" },
+                    json = { "prettier" },
+                    rust = { "rustfmt" },
+                    go = { "gofmt" },
+                },
+            })
+        end
+    }
+
+    -- Fun animations
+    use 'eandrju/cellular-automaton.nvim'
 end)
