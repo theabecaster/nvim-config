@@ -86,4 +86,7 @@ return require('packer').startup(function(use)
 
     -- Fun animations
     use 'eandrju/cellular-automaton.nvim'
+    
+    -- Claude Code integration
+    use 'coder/claudecode.nvim'
 end)

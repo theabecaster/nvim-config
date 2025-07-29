@@ -71,3 +71,7 @@ end)
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
+
+-- Claude Code keymaps
+vim.keymap.set("n", "<leader>cc", "<cmd>ClaudeCode<CR>", { desc = "Open Claude Code" })
+vim.keymap.set("n", "<leader>ct", "<cmd>ClaudeCodeToggle<CR>", { desc = "Toggle Claude Code" })
