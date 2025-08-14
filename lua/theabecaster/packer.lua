@@ -51,19 +51,12 @@ return require('packer').startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'
     use 'L3MON4D3/LuaSnip'
 
-    -- Copilot integration for nvim-cmp
+    -- Supermaven integration
     use {
-        "zbirenbaum/copilot.lua",
+        "supermaven-inc/supermaven-nvim",
         config = function()
-            require("copilot").setup({})
-        end
-    }
-    use {
-        "zbirenbaum/copilot-cmp",
-        after = {"copilot.lua"},
-        config = function()
-            require("copilot_cmp").setup()
-        end
+            require("supermaven-nvim").setup({})
+        end,
     }
 
     -- Code formatting

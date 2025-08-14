@@ -20,7 +20,7 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'ts_ls', 'rust_analyzer', 'arduino_language_server', 'ast_grep', 'dockerls', 'gradle_ls', 'jsonls', 'svelte', 'taplo'},
+  ensure_installed = {'ts_ls', 'rust_analyzer', 'dockerls', 'gradle_ls', 'jsonls', 'svelte', 'taplo', 'gopls'},
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({
@@ -55,7 +55,6 @@ local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
   sources = cmp.config.sources({
-    {name = 'copilot'},
     {name = 'nvim_lsp'},  
     {name = 'luasnip'},  
   }, {
