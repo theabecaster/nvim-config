@@ -2,30 +2,11 @@
 
 -- Configure SourceKit-LSP for Swift
 local sourcekit_setup = function()
-  local lspconfig = require('lspconfig')
-  
-  -- Setup SourceKit-LSP
-  lspconfig.sourcekit.setup {
+  vim.lsp.config('sourcekit', {
+    cmd = { "sourcekit-lsp" },
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
-    -- Enable file watching for Swift files
-    capabilities = {
-      workspace = {
-        didChangeWatchedFiles = {
-          dynamicRegistration = true,
-        },
-      },
-    },
-    -- Set the sourcekit-lsp root dir to find project file structure correctly
-    root_dir = function(filename, _)
-      return lspconfig.util.root_pattern("Package.swift", "*.xcodeproj", "*.xcworkspace")(filename)
-        or lspconfig.util.root_pattern("*.swift")(filename)
-        or lspconfig.util.find_git_ancestor(filename)
-    end,
-    -- Ensure sourcekit can find the Swift compiler and tools
-    cmd = {
-      "sourcekit-lsp"
-    },
-    -- Add settings to improve symbol resolution
+    filetypes = { 'swift' },
+    root_markers = { "Package.swift", "*.xcodeproj", "*.xcworkspace", "*.swift", ".git" },
     settings = {
       sourcekit = {
         diagnostics = true,
@@ -34,26 +15,11 @@ local sourcekit_setup = function()
         }
       }
     },
-    on_attach = function(client, bufnr)
-      -- Custom handling for Swift files
-      vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-      
-      -- Force indexing of the project on buffer open
-      vim.defer_fn(function()
-        if client.name == "sourcekit" then
-          client.request("workspace/executeCommand", {
-            command = "sourcekit.index"
-          })
-        end
-      end, 1000)
-    end
-  }
+  })
 end
 
--- Only configure SourceKit if LSP is available
-if pcall(require, 'lspconfig') then
-  sourcekit_setup()
-end
+-- Configure SourceKit
+sourcekit_setup()
 
 -- Add Swift snippets
 if pcall(require, 'luasnip') then

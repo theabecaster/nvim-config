@@ -33,15 +33,11 @@ return require('packer').startup(function(use)
     -- LSP and Mason setup
     use {
         'williamboman/mason.nvim',
-        config = function()
-            require("mason").setup()
-        end
+        run = ':MasonUpdate'
     }
     use {
         'williamboman/mason-lspconfig.nvim',
-        config = function()
-            require("mason-lspconfig").setup()
-        end
+        after = 'mason.nvim'
     }
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-cmp'
