@@ -1,4 +1,4 @@
-vim.opt.guicursor = ""
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -29,3 +29,11 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+-- Auto-reload files when changed externally
+vim.opt.autoread = true
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+    group = vim.api.nvim_create_augroup("AutoReload", { clear = true }),
+    command = "silent! checktime",
+})
